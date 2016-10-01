@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startTimer() {
-        rc = (ChronometerView) findViewById(R.id.tv_stopwatch);
+        rc = (ChronometerView) findViewById(R.id.chron_stopwatch);
 //        rc.setPauseTimeOffset(tinydb.getLong("TotalForegroundTime", 0));
         rc.setOverallDuration(2 * 600);
         rc.setWarningDuration(90);
@@ -91,7 +91,9 @@ public class MainActivity extends AppCompatActivity {
 
         String str_current_text = tv_workout.getText().toString();
 
-        String str_textview_time = str_current_text + "\n\n" + "Workout " + mworkout_num + ": Time = " + String.valueOf(time) + " seconds";
+        String str_textview_time = str_current_text + "Workout " + mworkout_num + ": TUL = " + String.valueOf(time) + " seconds" + "\n\n" ;
+
+        tinydb.putString("Text",str_textview_time);
 
         tv_workout.setText(str_textview_time);
 
