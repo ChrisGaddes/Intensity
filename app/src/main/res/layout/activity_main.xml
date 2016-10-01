@@ -11,50 +11,15 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.chrisgaddes.intensity.MainActivity">
 
-    <TextView
-        android:id="@+id/tv_workout_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="26sp"
-        android:text="Workout 1: "
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Reset"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         />
-
-    <TextView
-        android:id="@+id/tv_workout_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="26sp"
-        android:text="Workout 2:"
-        android:layout_below="@id/tv_workout_1"
-        />
-
-    <TextView
-        android:id="@+id/tv_workout_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="26sp"
-        android:text="Workout 3:"
-        android:layout_below="@id/tv_workout_2"
-        />
-
-    <TextView
-        android:id="@+id/tv_workout_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="26sp"
-        android:text="Workout 4:"
-        android:layout_below="@id/tv_workout_3"
-        />
-
-    <TextView
-        android:id="@+id/tv_workout_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="26sp"
-        android:text="Workout 5:"
-        android:layout_below="@id/tv_workout_4"
-        />
-
 
     <Button
         android:id="@+id/btn_start_stop"
@@ -62,9 +27,10 @@
         android:layout_height="100dp"
         android:text="Start"
         android:layout_marginTop="20dp"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_above="@id/btn_reset"
         />
+
 
     <com.chrisgaddes.intensity.ChronometerView
         android:id="@+id/tv_stopwatch"
@@ -75,5 +41,14 @@
         android:textSize="100sp"
         android:text="0:00"
         />
+
+    <EditText
+        android:id="@+id/tv_workout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:cursorVisible="false"/>
 
 </RelativeLayout>
