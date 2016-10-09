@@ -1,7 +1,6 @@
 package com.chrisgaddes.intensity;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.widget.TextView;
@@ -30,14 +29,20 @@ public class ChronometerView extends TextView implements Runnable {
     public void run() {
         isRunning = true;
 
-        elapsedSeconds = (SystemClock.elapsedRealtime() - startTime - beginTime) / 1000;
+        elapsedSeconds = (SystemClock.elapsedRealtime() - startTime);
 
 //        if (elapsedSeconds <= overallDuration) {
-            long remainingSeconds = elapsedSeconds;
-            long minutes = remainingSeconds / 60;
-            long seconds = remainingSeconds - (60 * minutes);
+//            long remainingSeconds = elapsedSeconds;
+//            long minutes = remainingSeconds / 60;
+//            long seconds = remainingSeconds - (60 * minutes);
+//            long milliseconds = (remainingSeconds/1000)/100;
 
-            setText(String.format("%d:%02d", minutes, seconds));
+
+        String time_duration = getTimeDurationAsString(elapsedSeconds);
+
+        setText(time_duration);
+
+//            setText(String.format("%d:%02d:%03d", minutes, seconds,milliseconds));
 
 //            if (elapsedSeconds >= overallDuration - warningDuration) {
 //                setTextColor(0xFFFF6600); // orange
@@ -45,7 +50,7 @@ public class ChronometerView extends TextView implements Runnable {
 //                setTextColor(Color.WHITE);
 //            }
 
-            postDelayed(this, 1000);
+            postDelayed(this, 1);
 //        } else {
 ////            setText("0:00");
 //            setText("Overtime");
@@ -84,5 +89,24 @@ public class ChronometerView extends TextView implements Runnable {
 
     public void setWarningDuration(long warningDuration) {
         this.warningDuration = warningDuration;
+    }
+
+    //    http://stackoverflow.com/a/7651285/6388083
+    public static final String getTimeDurationAsString(long milliseconds) {
+        int millis  = (int) (milliseconds % 1000);
+        int seconds = (int) (milliseconds / 1000) % 60;
+        int minutes = (int) ((milliseconds / (1000*60)) % 60);
+        int hours   = (int) ((milliseconds / (1000*60*60)) % 24);
+        StringBuilder sb = new StringBuilder();
+        if (hours > 0) {
+            sb.append((char)('0' + hours / 10))
+                    .append((char)('0' + hours % 10)).append(":");
+        }
+        sb.append((char)('0' + minutes / 10))
+                .append((char)('0' + minutes % 10)).append(":")
+                .append((char)('0' + seconds / 10))
+                .append((char)('0' + seconds % 10)).append(".")
+                .append((char)('0' + millis / 100));
+        return sb.toString();
     }
 }
